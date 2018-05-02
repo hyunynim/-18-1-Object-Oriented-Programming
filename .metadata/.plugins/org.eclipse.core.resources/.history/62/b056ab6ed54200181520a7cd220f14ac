@@ -1,0 +1,52 @@
+public class Course {
+  private String courseName;
+  private String[] students = new String[DEFAULT_STUDENTS_SIZE];
+  private int numberOfStudents;
+  public static final int DEFAULT_STUDENTS_SIZE = 4;
+  
+  public Course(String courseName) {
+    this.courseName = courseName;
+  }
+  
+  public Course(String courseName, int size) {
+	    this.courseName = courseName;
+	    this.students = new String[size];
+	  }
+  
+  public void addStudent(String student) {
+	  if(students.length >= numberOfStudents) {
+		  String[] tmp = new String[numberOfStudents * 2];
+		  students = tmp;
+	  }
+    students[numberOfStudents] = student;
+    numberOfStudents++;
+  }
+  
+  public String[] getStudents() {
+    return students;
+  }
+
+  public int getNumberOfStudents() {
+    return numberOfStudents;
+  }  
+
+  public String getCourseName() {
+    return courseName;
+  }  
+  
+  public void dropStudent(String student) {
+    // Left as an exercise in Exercise 10.9
+	  int i;
+	  for(i =0; i<students.length; ++i) {
+		  if(student.equals(students[i])) 
+			  break;
+	  }
+	  String[] tmp = new String[students.length - 1];
+	  System.arraycopy(students, 0, tmp, 0, i);
+	  System.arraycopy(students, i + 1, tmp, i, students.length - i);
+  }
+  
+  public void clear() {
+	  students = new String[DEFAULT_STUDENTS_SIZE];
+  }
+}
